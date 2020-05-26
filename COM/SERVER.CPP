@@ -19,7 +19,7 @@ int flag1 = 0;
 int flag2 = 0; 
 int flag3 = 0;
 int in = 0;
-unsigned int vector_base = 0xA0;
+unsigned int vector_base = 0xA0; // второй контроллер (команды)
 
 char* library[] = {
 		"lab3.exe",
@@ -60,8 +60,8 @@ int main() {
 	setvect(vector_base + 0x01, newint09);
 
 	disable();
-	outp(0x20, 0x11);
-	outp(0x21, vector_base);
+	outp(0x20, 0x11); // инициализация ведущего контроллера
+	outp(0x21, vector_base); // переопределение вектора прерываний
 	outp(0x21, 0x04);
 	outp(0x21, 0x01);
 	enable();
